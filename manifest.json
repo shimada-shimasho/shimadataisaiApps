@@ -3,11 +3,11 @@
   "short_name": "PWA",
   "background_color": "#fc980c",
   "icons": [{
-      "src": "./shimadaMuIcon.png",
+      "src": "./img/shimadaMuIcon.png",
       "sizes": "256x256",
       "type": "image/png"
     },{
-      "src": "./shimadaMuIcon192.png",
+      "src": "./img/shimadaMuIcon192.png",
       "sizes": "192x192",
       "type": "image/png"
     }],

@@ -1,7 +1,7 @@
 if (navigator.geolocation) {
     //Geolocation APIが利用できる場合
     //現在位置を取得する
-    navigator.geolocation.getCurrentPosition(
+    navigator.geolocation.watchPosition(
 
         //getCurrentPositionの第１引数
         function successFunc(position) {
