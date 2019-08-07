@@ -1,21 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
+<link rel="manifest" href="./manifest.json">
+<script type="text/javascript">
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('sw.js')
+             .then(function() { console.log("Service Worker Registered"); })
+             .catch(function() { console.log("Service Worker Not Registered"); });
+  }
+</script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title></title>
-<meta charset="utf-8">
-<meta name="description" content="">
-<meta name="author" content="">
+<title>島田大祭位置情報取得アプリ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="">
-<!--[if lt IE 9]>
-<script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+<!-- SDKの読み込み -->
+<script type="text/javascript" src="js/ncmb.min.js" charset="utf-8"></script>
+<!-- GSPdataの取得 -->
+<script type="text/javascript" src="js/gps.js" charset="utf-8"></script>
 <link rel="shortcut icon" href="">
+<meta http-equiv="refresh" content="300; URL=http://localhost/shimada/shimadataisaiApps/index.html">
 </head>
 <body>
   this pages is shimada-city festival apps
+  <div id="sending">aaa</div>
 <!-- Place your content here -->
 <!-- SCRIPTS -->
 <!-- Example: <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
