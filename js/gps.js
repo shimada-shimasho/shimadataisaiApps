@@ -6,8 +6,7 @@ if (navigator.geolocation) {
   // データストアへの登録
   var gpsLogClass = new gpsLogClass();
 
-  var geo_text;
-  
+
   //Geolocation APIが利用できる場合
   //現在位置を取得する
   navigator.geolocation.watchPosition(
@@ -21,7 +20,7 @@ if (navigator.geolocation) {
 
     //getCurrentPositionの第１引数
     function successFunc(position) {
-      geo_text = "緯度:" + position.coords.latitude + "<br/>";
+      var geo_text = "緯度:" + position.coords.latitude + "<br/>";
       geo_text += "経度:" + position.coords.longitude + "<br/>";
       geo_text += "高度:" + position.coords.altitude + "<br/>";
       geo_text += "位置精度:" + position.coords.accuracy + "<br/>";
@@ -67,7 +66,7 @@ if (navigator.geolocation) {
     {
       //getCurrentPositionの第３引数
       "enableHighAccuracy": true,
-      "timeout": 8000,
+      "timeout": 3000,
       "maximumAge": 2000,
     }
   );
