@@ -1,32 +1,44 @@
 if (navigator.geolocation) {
+  // mobile backendアプリとの連携
+  var ncmb = new NCMB("3bfa8718ce052e1ca1f992e74e255e22e27e176e9b709358b0bb46500ec2d90a", "81d6c842a24bbe4af6a517da7d4c9864e52ef50c3fb2722d1b51b332f32f67e2");
+  // クラスのTestClassを作成
+  var gpsLogClass = ncmb.DataStore("gpsLog");
+  // データストアへの登録
+  var gpsLogClass = new gpsLogClass();
+
+  var geo_text;
+  
   //Geolocation APIが利用できる場合
   //現在位置を取得する
   navigator.geolocation.watchPosition(
 
+//if location<> then.....
+
+
+
+
+
+
     //getCurrentPositionの第１引数
     function successFunc(position) {
-      // mobile backendアプリとの連携
-      var ncmb = new NCMB("3bfa8718ce052e1ca1f992e74e255e22e27e176e9b709358b0bb46500ec2d90a", "81d6c842a24bbe4af6a517da7d4c9864e52ef50c3fb2722d1b51b332f32f67e2");
-      // クラスのTestClassを作成
-      var gpsLogClass = ncmb.DataStore("gpsLog");
+      geo_text = "緯度:" + position.coords.latitude + "<br/>";
+      geo_text += "経度:" + position.coords.longitude + "<br/>";
+      geo_text += "高度:" + position.coords.altitude + "<br/>";
+      geo_text += "位置精度:" + position.coords.accuracy + "<br/>";
+      geo_text += "高度精度:" + position.coords.altitudeAccuracy + "<br/>";
+      geo_text += "移動方向:" + position.coords.heading + "<br/>";
+      geo_text += "速度:" + position.coords.speed + "<br/>";
 
-      // データストアへの登録
-      var gpsLogClass = new gpsLogClass();
+      document.getElementById('sending').innerHTML = geo_text;
+
+
       gpsLogClass.set("Lat", position.coords.latitude);
       gpsLogClass.set("Lng", position.coords.longitude);
       gpsLogClass.save()
         .then(function() {
           // 保存に成功した場合の処理
           // alert("sending");
-          var geo_text = "緯度:" + position.coords.latitude + "<br/>";
-          geo_text += "経度:" + position.coords.longitude + "<br/>";
-          geo_text += "高度:" + position.coords.altitude + "<br/>";
-          geo_text += "位置精度:" + position.coords.accuracy + "<br/>";
-          geo_text += "高度精度:" + position.coords.altitudeAccuracy + "<br/>";
-          geo_text += "移動方向:" + position.coords.heading + "<br/>";
-          geo_text += "速度:" + position.coords.speed + "<br/>";
 
-          document.getElementById('sending').innerHTML = geo_text;
 
         })
         .catch(function(err) {
