@@ -35,7 +35,7 @@ if (navigator.geolocation) {
           geo_text += "移動方向:" + position.coords.heading + "<br/>";
           geo_text += "速度:" + position.coords.speed + "<br/>";
 
-          document.getElementById('sending').innerHTML = geo_text;  
+          document.getElementById('sending').innerHTML = geo_text;
 
         })
         .catch(function(err) {
@@ -43,7 +43,7 @@ if (navigator.geolocation) {
           // alert("error")
         });
 
-        document.getElementById('sending').innerHTML = "xxx";
+        //document.getElementById('sending').innerHTML = "xxx";
     },
 
     //getCurrentPositionの第２引数
