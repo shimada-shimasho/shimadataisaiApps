@@ -1,6 +1,6 @@
 {
   "name": "shimadataisaiApps",
-  "short_name": "PWA",
+  "short_name": "島田大祭（屋台側）",
   "background_color": "#fc980c",
   "icons": [{
       "src": "./img/shimadaMuIcon.png",
