@@ -26,7 +26,7 @@ if (navigator.geolocation) {
       document.getElementById('geolocation_data').innerHTML = geo_text;
 
       var checkTime = new Date();
-      //checkTime=checkTime-300000;
+      checkTime=checkTime-300000;
 
       if (checkTime >= updateTime) {
         gpsLogClass.set("Lat", position.coords.latitude);
