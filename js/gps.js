@@ -55,7 +55,7 @@ if (navigator.geolocation) {
 
       var errorMessage = error.code;
 
-      alert(errorMessage);
+      document.getElementById('sending').innerHTML = "data_uplode_error[ "+errorInfo[error.code]+" ]";
 
     },
 
