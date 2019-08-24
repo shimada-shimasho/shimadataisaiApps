@@ -6,11 +6,11 @@ if (navigator.geolocation) {
   // データストアへの登録
   var gpsLogClass = new gpsLogClass();
 
-
+  document.getElementById('sending').innerHTML = "現在位置　取得中…";
   //Geolocation APIが利用できる場合
   //現在位置を取得する
   navigator.geolocation.watchPosition(
-    document.getElementById('sending').innerHTML = "現在位置　取得中…";
+
 //if location<> then.....
 
 
