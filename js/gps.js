@@ -39,11 +39,10 @@ if (navigator.geolocation) {
 
         })
         .catch(function(err) {
-          // 保存に失敗した場合の処理
-          // alert("error")
+          document.getElementById('sending').innerHTML = "data_uplode_error";
         });
 
-        //document.getElementById('sending').innerHTML = "xxx";
+        
     },
 
     //getCurrentPositionの第２引数
