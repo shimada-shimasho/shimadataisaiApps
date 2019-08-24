@@ -38,7 +38,8 @@ if (navigator.geolocation) {
         .then(function() {
           // 保存に成功した場合の処理
           // alert("sending");
-
+          var nowTime=new date();
+          document.getElementById('sending').innerHTML = "data_uplode_success"+getHours()+":"+getMinutes()+":"+getSeconds();
         })
         .catch(function(err) {
           document.getElementById('sending').innerHTML = "data_uplode_error";
