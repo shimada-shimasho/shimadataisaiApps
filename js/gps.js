@@ -42,7 +42,8 @@ if (navigator.geolocation) {
           document.getElementById('sending').innerHTML = "data_uplode_success"+getHours()+":"+getMinutes()+":"+getSeconds();
         })
         .catch(function(err) {
-          document.getElementById('sending').innerHTML = "data_uplode_error";
+          var nowTime=new date();
+          document.getElementById('sending').innerHTML = "data_uplode_error"+getHours()+":"+getMinutes()+":"+getSeconds();
         });
 
     },
