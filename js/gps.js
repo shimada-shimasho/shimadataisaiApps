@@ -14,7 +14,39 @@ if (navigator.geolocation) {
   //現在位置を取得する
   navigator.geolocation.watchPosition(
     //getCurrentPositionの第１引数
-    successFunc(position) ,
+    function successFunc(position) {
+      var geo_text = "緯度:" + position.coords.latitude + "<br/>";
+      geo_text += "経度:" + position.coords.longitude + "<br/>";
+      geo_text += "高度:" + position.coords.altitude + "<br/>";
+      geo_text += "位置精度:" + position.coords.accuracy + "<br/>";
+      geo_text += "高度精度:" + position.coords.altitudeAccuracy + "<br/>";
+      geo_text += "移動方向:" + position.coords.heading + "<br/>";
+      geo_text += "速度:" + position.coords.speed + "<br/>";
+
+      document.getElementById('geolocation_data').innerHTML = geo_text;
+
+      var checkTime = new date();
+      //checkTime=checkTime-300000;
+
+      if (checkTime >= updateTime) {
+        gpsLogClass.set("Lat", position.coords.latitude);
+        gpsLogClass.set("Lng", position.coords.longitude);
+        gpsLogClass.save()
+          .then(function() {
+            // 保存に成功した場合の処理
+            var nowTime = new date();
+            document.getElementById('sending').innerHTML = "data_uplode_success_" + nowTime;
+            updateTime = nowTime;
+          })
+          .catch(function(err) {
+              var nowTime = new date();
+              document.getElementById('sending').innerHTML = "data_uplode_error_" + nowTime;
+          }
+      }else{
+        document.getElementById('sending').innerHTML = "data_uplode_to_" + updateTime;
+      }
+
+    },
 
     //getCurrentPositionの第２引数
     function errorFunc(error) {
@@ -46,7 +78,7 @@ if (navigator.geolocation) {
 
 //setTimeout("location.reload()",5000);
 
-//getCurrentPositionの第１引数
+
 function successFunc(position) {
   var geo_text = "緯度:" + position.coords.latitude + "<br/>";
   geo_text += "経度:" + position.coords.longitude + "<br/>";
@@ -61,7 +93,7 @@ function successFunc(position) {
   var checkTime = new date();
   //checkTime=checkTime-300000;
 
-  if (checkTime >= updateTime) {
+  // if (checkTime >= updateTime) {
     gpsLogClass.set("Lat", position.coords.latitude);
     gpsLogClass.set("Lng", position.coords.longitude);
     gpsLogClass.save()
@@ -75,6 +107,6 @@ function successFunc(position) {
           var nowTime = new date();
           document.getElementById('sending').innerHTML = "data_uplode_error" + nowTime;
         }
-      }
+      // }
 
 }
