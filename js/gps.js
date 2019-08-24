@@ -7,7 +7,7 @@ if (navigator.geolocation) {
   var gpsLogClass = new gpsLogClass();
 
   //サーバーアップロードの時間を記録
-  var updateTime = new date();
+  var updateTime = new Date();
 
   document.getElementById('geolocation_data').innerHTML = "現在位置　取得中…";
   //Geolocation APIが利用できる場合
@@ -25,7 +25,7 @@ if (navigator.geolocation) {
 
       document.getElementById('geolocation_data').innerHTML = geo_text;
 
-      var checkTime = new date();
+      var checkTime = new Date();
       //checkTime=checkTime-300000;
 
       if (checkTime >= updateTime) {
@@ -33,12 +33,12 @@ if (navigator.geolocation) {
         gpsLogClass.set("Lng", position.coords.longitude);
         gpsLogClass.save().then(function() {
             // 保存に成功した場合の処理
-            var nowTime = new date();
+            var nowTime = new Date();
             document.getElementById('sending').innerHTML = "data_uplode_success_" + nowTime;
             updateTime = nowTime;
           })
           .catch(function(err) {
-            var nowTime = new date();
+            var nowTime = new Date();
             document.getElementById('sending').innerHTML = "data_uplode_error_" + nowTime;
           });
       } else {
