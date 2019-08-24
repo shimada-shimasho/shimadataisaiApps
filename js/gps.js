@@ -6,7 +6,7 @@ if (navigator.geolocation) {
   // データストアへの登録
   var gpsLogClass = new gpsLogClass();
 
-  document.getElementById('sending').innerHTML = "現在位置　取得中…";
+  document.getElementById('geolocation_data').innerHTML = "現在位置　取得中…";
   //Geolocation APIが利用できる場合
   //現在位置を取得する
   navigator.geolocation.watchPosition(
@@ -29,7 +29,9 @@ if (navigator.geolocation) {
       geo_text += "移動方向:" + position.coords.heading + "<br/>";
       geo_text += "速度:" + position.coords.speed + "<br/>";
 
-      document.getElementById('sending').innerHTML = geo_text;
+      document.getElementById('geolocation_data').innerHTML = geo_text;
+
+
       gpsLogClass.set("Lat", position.coords.latitude);
       gpsLogClass.set("Lng", position.coords.longitude);
       gpsLogClass.save()
@@ -55,7 +57,7 @@ if (navigator.geolocation) {
 
       var errorMessage = error.code;
 
-      document.getElementById('sending').innerHTML = "geolocation_error[ "+errorInfo[error.code]+" ]";
+      document.getElementById('geolocation_data').innerHTML = "geolocation_error[ "+errorInfo[error.code]+" ]";
 
     },
 
@@ -70,7 +72,7 @@ if (navigator.geolocation) {
 
 } else {
   //Geolocation APIが利用できない場合
-  alert("現在利用している端末では、位置情報を取得できません。")
+  document.getElementById('geolocation_data').innerHTML ="現在利用している端末では、位置情報を取得できません。";
 }
 
 //setTimeout("location.reload()",5000);
