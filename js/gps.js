@@ -8,6 +8,8 @@ if (navigator.geolocation) {
 
   //サーバーアップロードの時間を記録
   var updateTime = new Date();
+  //５分以上経っていてかつ１度も更新していないかをチェックするための変数
+  var tryFlg=0;
 
   document.getElementById('geolocation_data').innerHTML = "現在位置　取得中…";
   //Geolocation APIが利用できる場合
@@ -15,6 +17,7 @@ if (navigator.geolocation) {
   navigator.geolocation.watchPosition(
     //getCurrentPositionの第１引数
     function successFunc(position) {
+      //位置情報をindex.htmlに表示
       var geo_text = "緯度:" + position.coords.latitude + "<br/>";
       geo_text += "経度:" + position.coords.longitude + "<br/>";
       geo_text += "高度:" + position.coords.altitude + "<br/>";
@@ -25,10 +28,12 @@ if (navigator.geolocation) {
 
       document.getElementById('geolocation_data').innerHTML = geo_text;
 
+      //時間をチェックし５分以上時間が経っていればデータアップロード
       var checkTime = new Date();
       checkTime=checkTime-300000;
 
       if (checkTime >= updateTime) {
+        if(tryFlg==0){
         gpsLogClass.set("Lat", position.coords.latitude);
         gpsLogClass.set("Lng", position.coords.longitude);
         gpsLogClass.save().then(function() {
@@ -36,13 +41,16 @@ if (navigator.geolocation) {
             var nowTime = new Date();
             updateTime = nowTime;
             document.getElementById('sending').innerHTML = "data_uplode_success_" + updateTime;
+            tryFlg=1;
           })
           .catch(function(err) {
             document.getElementById('sending').innerHTML = "data_uplode_error_" + checkTime;
           });
       } else {
         document.getElementById('sending').innerHTML = "data_uplode_to_" + updateTime+"<br/>try_"+checkTime;
+        tryFlg=0;
       }
+    }
 
     },
 
