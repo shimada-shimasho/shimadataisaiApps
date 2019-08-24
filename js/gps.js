@@ -10,7 +10,7 @@ if (navigator.geolocation) {
   //Geolocation APIが利用できる場合
   //現在位置を取得する
   navigator.geolocation.watchPosition(
-
+    document.getElementById('sending').innerHTML = "現在位置　取得中…";
 //if location<> then.....
 
 
@@ -42,7 +42,6 @@ if (navigator.geolocation) {
           document.getElementById('sending').innerHTML = "data_uplode_error";
         });
 
-        
     },
 
     //getCurrentPositionの第２引数
