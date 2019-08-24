@@ -7,7 +7,7 @@ if (navigator.geolocation) {
   var gpsLogClass = new gpsLogClass();
 
   //サーバーアップロードの時間を記録
-  var updateTime=new date();
+  var updateTime = new date();
 
   document.getElementById('geolocation_data').innerHTML = "現在位置　取得中…";
   //Geolocation APIが利用できる場合
@@ -26,53 +26,53 @@ if (navigator.geolocation) {
 
       document.getElementById('geolocation_data').innerHTML = geo_text;
 
-      var checkTime=new date();
+      var checkTime = new date();
       //checkTime=checkTime-300000;
 
-      if(checkTime>=updateTime){
+      if (checkTime >= updateTime) {
         gpsLogClass.set("Lat", position.coords.latitude);
         gpsLogClass.set("Lng", position.coords.longitude);
         gpsLogClass.save()
           .then(function() {
             // 保存に成功した場合の処理
-            var nowTime=new date();
-            document.getElementById('sending').innerHTML = "data_uplode_success"+nowTime;
-            updateTime=nowTime;
+            var nowTime = new date();
+            document.getElementById('sending').innerHTML = "data_uplode_success" + nowTime;
+            updateTime = nowTime;
           })
           .catch(function(err) {
-            var nowTime=new date();
-            document.getElementById('sending').innerHTML = "data_uplode_error"+nowTime;
-        }
+              var nowTime = new date();
+              document.getElementById('sending').innerHTML = "data_uplode_error" + nowTime;
+            }
+          }
+      },
 
-    },
+      //getCurrentPositionの第２引数
+      function errorFunc(error) {
+        var errorInfo = [
+          "0: UNKNOWN_ERROR 原因不明のエラーが発生しました",
+          "1: PERMISSION_DENIED 利用者が位置情報の取得を許可されませんでした",
+          "2: POSITION_UNAVAILABLE 電波状況などで位置情報が取得できませんでした",
+          "3: TIMEOUT 位置情報の取得に時間がかかり取得できませんでした"
+        ];
 
-    //getCurrentPositionの第２引数
-    function errorFunc(error) {
-      var errorInfo = [
-        "0: UNKNOWN_ERROR 原因不明のエラーが発生しました",
-        "1: PERMISSION_DENIED 利用者が位置情報の取得を許可されませんでした",
-        "2: POSITION_UNAVAILABLE 電波状況などで位置情報が取得できませんでした",
-        "3: TIMEOUT 位置情報の取得に時間がかかり取得できませんでした"
-      ];
+        var errorMessage = error.code;
 
-      var errorMessage = error.code;
+        document.getElementById('geolocation_data').innerHTML = "geolocation_error[ " + errorInfo[error.code] + " ]";
 
-      document.getElementById('geolocation_data').innerHTML = "geolocation_error[ "+errorInfo[error.code]+" ]";
+      },
 
-    },
-
-    {
-      //getCurrentPositionの第３引数
-      "enableHighAccuracy": true,
-      "timeout": 3000,
-      "maximumAge": 2000,
-    }
-  );
+      {
+        //getCurrentPositionの第３引数
+        "enableHighAccuracy": true,
+        "timeout": 3000,
+        "maximumAge": 2000,
+      });
 
 
-} else {
-  //Geolocation APIが利用できない場合
-  document.getElementById('geolocation_data').innerHTML ="現在利用している端末では、位置情報を取得できません。";
-}
+  }
+  else {
+    //Geolocation APIが利用できない場合
+    document.getElementById('geolocation_data').innerHTML = "現在利用している端末では、位置情報を取得できません。";
+  }
 
-//setTimeout("location.reload()",5000);
+  //setTimeout("location.reload()",5000);
