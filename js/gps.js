@@ -21,21 +21,21 @@ if (navigator.geolocation) {
     //getCurrentPositionの第１引数
     function successFunc(position) {
 
+      var geo_text = "緯度:" + position.coords.latitude + "<br/>";
+      geo_text += "経度:" + position.coords.longitude + "<br/>";
+      geo_text += "高度:" + position.coords.altitude + "<br/>";
+      geo_text += "位置精度:" + position.coords.accuracy + "<br/>";
+      geo_text += "高度精度:" + position.coords.altitudeAccuracy + "<br/>";
+      geo_text += "移動方向:" + position.coords.heading + "<br/>";
+      geo_text += "速度:" + position.coords.speed + "<br/>";
+
+      document.getElementById('sending').innerHTML = geo_text;
       gpsLogClass.set("Lat", position.coords.latitude);
       gpsLogClass.set("Lng", position.coords.longitude);
       gpsLogClass.save()
         .then(function() {
           // 保存に成功した場合の処理
           // alert("sending");
-          var geo_text = "緯度:" + position.coords.latitude + "<br/>";
-          geo_text += "経度:" + position.coords.longitude + "<br/>";
-          geo_text += "高度:" + position.coords.altitude + "<br/>";
-          geo_text += "位置精度:" + position.coords.accuracy + "<br/>";
-          geo_text += "高度精度:" + position.coords.altitudeAccuracy + "<br/>";
-          geo_text += "移動方向:" + position.coords.heading + "<br/>";
-          geo_text += "速度:" + position.coords.speed + "<br/>";
-
-          document.getElementById('sending').innerHTML = geo_text;
 
         })
         .catch(function(err) {
@@ -55,7 +55,7 @@ if (navigator.geolocation) {
 
       var errorMessage = error.code;
 
-      document.getElementById('sending').innerHTML = "data_uplode_error[ "+errorInfo[error.code]+" ]";
+      document.getElementById('sending').innerHTML = "geolocation_error[ "+errorInfo[error.code]+" ]";
 
     },
 
