@@ -34,12 +34,11 @@ if (navigator.geolocation) {
         gpsLogClass.save().then(function() {
             // 保存に成功した場合の処理
             var nowTime = new Date();
-            document.getElementById('sending').innerHTML = "data_uplode_success_" + nowTime;
             updateTime = nowTime;
+            document.getElementById('sending').innerHTML = "data_uplode_success_" + updateTime;
           })
           .catch(function(err) {
-            var nowTime = new Date();
-            document.getElementById('sending').innerHTML = "data_uplode_error_" + nowTime;
+            document.getElementById('sending').innerHTML = "data_uplode_error_" + checkTime;
           });
       } else {
         document.getElementById('sending').innerHTML = "data_uplode_to_" + updateTime;
