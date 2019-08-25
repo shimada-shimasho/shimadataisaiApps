@@ -45,6 +45,7 @@ if (navigator.geolocation) {
           })
           .catch(function(err) {
             document.getElementById('sending').innerHTML = "data_uplode_error_" + checkTime;
+            tryFlg=1;
           });
       } else {
         document.getElementById('sending').innerHTML = "data_uplode_to_" + updateTime+"<br/>try_"+checkTime;
