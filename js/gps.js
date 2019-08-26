@@ -51,6 +51,9 @@ if (navigator.geolocation) {
         document.getElementById('sending').innerHTML = "data_uplode_to_" + updateTime+"<br/>try_"+checkTime;
         tryFlg=0;
       }
+    }else {
+      document.getElementById('sending').innerHTML = "data_uplode_to_" + updateTime+"<br/>try_"+checkTime;
+      tryFlg=0;
     }
 
     },

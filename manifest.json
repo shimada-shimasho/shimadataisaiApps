@@ -1,7 +1,7 @@
 {
   "name": "shimadataisaiApps",
   "short_name": "島田大祭（屋台側）",
-  "background_color": "#fc980c",
+  "background_color": "#9e2cdd",
   "icons": [{
       "src": "./img/shimadaMuIcon.png",
       "sizes": "256x256",
