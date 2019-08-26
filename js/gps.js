@@ -33,7 +33,7 @@ if (navigator.geolocation) {
       checkTime=checkTime-300000;
 
       if (checkTime >= updateTime) {
-        if(tryFlg==0){
+        // if(tryFlg==0){
         gpsLogClass.set("Lat", position.coords.latitude);
         gpsLogClass.set("Lng", position.coords.longitude);
         gpsLogClass.save().then(function() {
@@ -41,20 +41,20 @@ if (navigator.geolocation) {
             var nowTime = new Date();
             updateTime = nowTime;
             document.getElementById('sending').innerHTML = "data_uplode_success_" + updateTime;
-            tryFlg=1;
+            // tryFlg=1;
           })
           .catch(function(err) {
             document.getElementById('sending').innerHTML = "data_uplode_error_" + checkTime;
-            tryFlg=1;
+            // tryFlg=1;
           });
       } else {
         document.getElementById('sending').innerHTML = "data_uplode_to_" + updateTime+"<br/>try_"+checkTime;
-        tryFlg=0;
+        // tryFlg=0;
       }
-    }else {
-      document.getElementById('sending').innerHTML = "data_uplode_to_" + updateTime+"<br/>try_"+checkTime;
-      tryFlg=0;
-    }
+    // }else {
+    //   document.getElementById('sending').innerHTML = "data_uplode_to_" + updateTime+"<br/>try_"+checkTime;
+    //   tryFlg=0;
+    // }
 
     },
 
