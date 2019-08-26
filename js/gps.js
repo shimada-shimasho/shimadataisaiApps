@@ -30,7 +30,8 @@ if (navigator.geolocation) {
 
       //時間をチェックし５分以上時間が経っていればデータアップロード
       var checkTime = new Date();
-      checkTime=checkTime-300000;
+      // checkTime=checkTime-300000;
+      
 
       if (checkTime >= updateTime) {
         // if(tryFlg==0){
