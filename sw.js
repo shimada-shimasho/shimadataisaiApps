@@ -1,3 +1,4 @@
+const CACHE_NAME = 'cache-v1';
 const STATIC_DATA = [
   'index.html',
   'js/gps.js',
@@ -6,11 +7,30 @@ const STATIC_DATA = [
 
 self.addEventListener('install', function(e) {
  e.waitUntil(
-   caches.open('cache_v1').then(function(cache) {
+   caches.open(CACHE_NAME).then(function(cache) {
      return cache.addAll(STATIC_DATA);
    })
  );
 });
+
+
+self.addEventListener('activate', (event) => {
+    var cacheWhitelist = [CACHE_NAME];
+
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) => {
+                    // ホワイトリストにないキャッシュ(古いキャッシュ)は削除する
+                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
+});
+
 
 self.addEventListener('fetch', function(event) {
  console.log(event.request.url);
