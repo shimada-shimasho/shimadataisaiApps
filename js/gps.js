@@ -9,7 +9,7 @@ if (navigator.geolocation) {
   //サーバーアップロードの時間を記録
   var updateTime = new Date();
   //５分以上経っていてかつ１度も更新していないかをチェックするための変数
-  var tryFlg=0;
+  // var tryFlg=0;
 
   document.getElementById('geolocation_data').innerHTML = "現在位置　取得中…";
   //Geolocation APIが利用できる場合
