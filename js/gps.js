@@ -36,11 +36,14 @@ if (navigator.geolocation) {
 
       if (checkTime >= updateTime) {
         // if(tryFlg==0){
-        // gpsLogClass.set("Lat", position.coords.latitude);
-        // gpsLogClass.set("Lng", position.coords.longitude);
-        gpsLogClass.set("Lat", "1");
-        gpsLogClass.set("Lng", "2");
-        gpsLogClass.save().then(function() {
+        gpsLogClass.set("Lat", position.coords.latitude);
+        gpsLogClass.set("Lng", position.coords.longitude);
+        gpsLogClass.save()
+        .then(function(gpsLogClass) {
+          gpsLogClass.set("Lat", position.coords.latitude);
+          gpsLogClass.set("Lng", position.coords.longitude);
+        })
+        .then(function(gpsLogClass) {
             // 保存に成功した場合の処理
             var nowTime = new Date();
             updateTime = nowTime;
