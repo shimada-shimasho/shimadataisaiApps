@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="manifest" href="./manifest.json">
+    <script type="text/javascript">
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker
+                 .register('sw.js')
+                 .then(function() { console.log("Service Worker Registered"); })
+                 .catch(function() { console.log("Service Worker Not Registered"); });
+      }
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>島田大祭位置情報アプリ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- SDKの読み込み -->
+    <script type="text/javascript" src="js/ncmb.min.js" charset="utf-8"></script>
+
+    <link rel="shortcut icon" href="./img/shimadaMuIcon192.png">
+    <link rel="apple-touch-icon" href="./img/shimadaMuIcon192.png" sizes="192x192"/>
+  </head>
+  <body>
+      this pages is shimada-city festival apps
+    <script type="text/javascript" src="js/gps_get.js" charset="utf-8"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmvmg6gN1qN2h3Cqh32T5EzTmqQN9Q0Sk&callback=initMap"></script>
+
+  </body>
+</html>
