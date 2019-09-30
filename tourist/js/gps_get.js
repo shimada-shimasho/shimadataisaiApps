@@ -42,8 +42,11 @@ function initMap() {
   if (navigator.geolocation) {
     console.log("...markerDareBefore");
     // markerData=function(){
+    fetch('https://shimada-city-sample.appspot.com/api/pos/',{
+    mode: 'cors'
+})
       var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
-        req.open("get", "https://shimada-city-sample.appspot.com/", true); // アクセスするファイルを指定
+        req.open("get", "https://shimada-city-sample.appspot.com/api/pos/", true); // アクセスするファイルを指定
         req.send(null); // HTTPリクエストの発行
     	console.log("req");
 
